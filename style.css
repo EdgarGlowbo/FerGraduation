@@ -115,7 +115,7 @@ html {
   border-radius: 5px;
   background-color: #12121f;
   padding: 15px;
-  width: 30%;
+  width: 72vw;
   height: fit-content;  
   left:0;
   right:0;
@@ -156,4 +156,27 @@ html {
 }
 .c-text__span {
   font-size: 1.3em;
+}
+
+@media only screen and (max-width: 360px) {
+  .calendar {
+    width: 30rem;
+    height: calc(52rem  * (2/3));  
+  }
+  .month {    
+    height: 8rem;  
+  }
+  .weekdays {    
+    height: calc(5rem * (2/3));            
+  }
+  .days div {    
+    margin: 0.2rem;
+    width: calc(26.8rem / 7);
+    height: calc(5rem * (2/3));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-shadow: 0 0.3rem 0.5rem rgba(0, 0, 0, 0.5);
+    transition: background-color 0.2s;
+  }
 }
