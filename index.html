@@ -1,1 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calendar</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="frase-cursi">Let's make this last forever</h1>
+      <div class="calendar">
+        <div class="month">
+          <i class="fas fa-angle-left prev"></i>
+          <div class="date">
+            <h1></h1>
+            <p></p>
+          </div>
+          <i class="fas fa-angle-right next"></i>
+        </div>
+        <div class="weekdays">
+          <div>Sun</div>
+          <div>Mon</div>
+          <div>Tue</div>
+          <div>Wed</div>
+          <div>Thu</div>
+          <div>Fri</div>
+          <div>Sat</div>
+          
+        </div>
+        <div class="days">          
+        </div>
+        <div class="l-add-date l-add-date--hidden">
+          <form action="" class="m-add-date">
+            <span class="c-add-date__span-text c-text__span">Asunto:</span>
+            <input type="text" name="asunto" autocomplete="off">
+            <span class="c-add-date__span-text c-text__span">Highlights:</span>
+            <textarea id="txtid" name="txtname" rows="4" cols="50" maxlength="300" placeholder="Te quiero mucho..."></textarea>
+            <div class="l-add-date__btns">
+              <button class="c-add-date__btn c-add-date__ok-btn c-btn">Ok</button>
+              <button class="c-add-date__btn c-add-date__cancel-btn c-btn">Cancel</button>
+            </div>            
+          </form>
+        </div>       
+      </div>
+    </div>
 
+    <script src="./dist/calendar.js"></script>
+    <script src="./dist/bundle.js"></script>
+  </body>
+</html>
