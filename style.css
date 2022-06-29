@@ -160,7 +160,7 @@ html {
   font-size: 1.3em;
 }
 
-@media only screen and (max-width: 360px) {
+@media only screen and (max-width: 425px) {
   .calendar {
     width: 30rem;
     height: calc(52rem  * (2/3));  

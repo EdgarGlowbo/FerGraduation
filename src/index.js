@@ -34,12 +34,13 @@ const dateAdd = (function () {
   // bind events
   daysContainer.addEventListener('click', function(e) {
     toggleAddDate(e);
-    editSubmission();
+    editSubmission(e);
   });
   monthHeader.addEventListener('click', function(e) {
     calendar.switchMonth(e);
     markDate();
   });
+  formAddDate.addEventListener('click', toggleAddDate);
   formAddDate.addEventListener('submit', addDateDB);
 
   // Greater scope variables
@@ -47,14 +48,19 @@ const dateAdd = (function () {
 
 
   // Show or hide add-date wdw
-  const toggleAddDate = e => {    
+  function toggleAddDate (e) {    
     const isInsideDayCont = e.target.classList.contains('c-cal__day'); // Checks for c-cal__day class which means is a day of the month
     const isNotDisplayed = addDateWdw.classList.contains('l-add-date--hidden'); // Checks if add-date wdw is not displayed    
     // show
-    if (isInsideDayCont && isNotDisplayed) {      
+    if (isInsideDayCont && isNotDisplayed) {          
       addDateWdw.classList.remove('l-add-date--hidden');
       day = parseInt(e.target.textContent);   // sets day value to the clicked day textContent          
-    }    
+    } 
+    // hide
+    if (e.target.classList.contains('c-add-date__cancel-btn')) {
+      addDateWdw.classList.add('l-add-date--hidden');
+      formAddDate.reset();
+    }
   }  
   async function addDateDB(e) {    
     e.preventDefault();
@@ -102,19 +108,21 @@ const dateAdd = (function () {
       calendar.days[day - 1].classList.add('salida');
     });    
   }
-  async function editSubmission() {
-    const year = calendar.date.getFullYear();
-    const month = calendar.date.getMonth();
-    const dateString = format(new Date(year, month, day), 'ddMMyyyy');    
-    const docRef = doc(db, 'dates', dateString);
-    const docSnap = await getDoc(docRef);
-    if (docSnap.exists()) {
-      const data = docSnap.data();
-      const asunto = data.asunto;
-      const highlights = data.highlights;
-      formAddDate.asunto.value = asunto;
-      formAddDate.txtname.value = highlights;            
-    }    
+  async function editSubmission(e) {
+    if (e.target.classList.contains('c-cal__day') && e.target.classList.contains('salida')) {
+      const year = calendar.date.getFullYear();
+      const month = calendar.date.getMonth();
+      const dateString = format(new Date(year, month, day), 'ddMMyyyy');    
+      const docRef = doc(db, 'dates', dateString);
+      const docSnap = await getDoc(docRef);
+      if (docSnap.exists()) {
+        const data = docSnap.data();
+        const asunto = data.asunto;
+        const highlights = data.highlights;
+        formAddDate.asunto.value = asunto;
+        formAddDate.txtname.value = highlights;            
+      }  
+    }      
   }
   
   // init
